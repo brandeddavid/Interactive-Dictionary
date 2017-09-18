@@ -1,4 +1,5 @@
 import json
+from difflib import get_close_matches
 
 data = json.load(open("data.json")) #Loads json file to a Python Dictionary
 
@@ -10,8 +11,20 @@ def fetch(word):
 
     else:
 
-        return "Word not found. Better luck next time"
+        if len(get_close_matches(word, data.keys())) == 0:
 
-define = input(">").lower()
+            return "Word not found. Better luck next time"
 
-print(fetch(define))
+        else:
+
+            choice = input('Sorry, word not found. Did you mean ' + get_close_matches(word, data.keys())[0] + '? ')
+
+            if choice == 'y':
+
+                return data[get_close_matches(word, data.keys())[0]]
+
+while True:
+
+    define = input(">").lower()
+
+    print(fetch(define))
