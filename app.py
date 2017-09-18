@@ -13,18 +13,29 @@ def fetch(word):
 
         if len(get_close_matches(word, data.keys())) == 0:
 
-            return "Word not found. Better luck next time"
+            return "This is embarrassing!! Word not found. Better luck next time"
 
         else:
 
-            choice = input('Sorry, word not found. Did you mean ' + get_close_matches(word, data.keys())[0] + '? ')
+            choice = input('Sorry, word not found. Did you mean %s instread? y/n ' % get_close_matches(word, data.keys())[0])
 
-            if choice == 'y':
+            if choice.lower() == 'y':
 
                 return data[get_close_matches(word, data.keys())[0]]
 
-while True:
+            else:
 
+                return "Bummer!! Seems like the word does not exist"
+
+running = 1
+
+while running == 1:
     define = input(">").lower()
 
-    print(fetch(define))
+    if define == 0:
+
+        running = 0
+
+    else:
+
+        print(fetch(define))
