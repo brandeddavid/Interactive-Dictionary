@@ -23,9 +23,13 @@ def fetch(word):
 
                 return data[get_close_matches(word, data.keys())[0]]
 
+            elif choice.lower() == 'n':
+
+                return "Bummer!! I can't seem to get the word. Please double check it"
+
             else:
 
-                return "Bummer!! Seems like the word does not exist"
+                return 'Am bright. But not that bright'
 
 running = 1
 
@@ -38,4 +42,12 @@ while running == 1:
 
     else:
 
-        print(fetch(define))
+        if type((fetch(define))) == list:
+
+            for item in fetch(define):
+
+                print(item)
+
+        else:
+
+            print(fetch(define))
